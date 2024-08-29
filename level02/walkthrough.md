@@ -10,7 +10,7 @@ Le mot de passe semble faire 40 caractères selon la décompilation du binaire. 
 La seule faille visible semble être le printf a la fin du programme qui prend en argument la chaine de caractère qui correspond au username.
 Autrement dit le programme est sensible a une format attack.
 
-#### Etape 3 : Idéee
+#### Etape 3 : Idée
 
 Print le contenu des adresses pour obtenir le mot de passe.
 En envoyant un %p on vois le contenu d'une adresse mémoire en hexadécimal.
