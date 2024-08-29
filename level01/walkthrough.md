@@ -32,7 +32,7 @@ nope, incorrect password...
 ```
 
 
-#### Etape 2 : Recherche de faille
+#### Etape 2 : Probleme
 
 Le premier fgets recupere le username et apres on compare avec "dat_wil".
 Le deuxieme fgets recupere le password et apres on compare avec "admin".
