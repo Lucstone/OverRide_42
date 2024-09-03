@@ -54,12 +54,14 @@ Nous allons utiliser la deuxieme idée.
 
 on convertis donc les lettres en binaire et on fait un XOR avec les valeurs.
 Xor : si 0 et 0 alors 0, si 1 et 1 alors 0, si 0 et 1 alors 1, si 1 et 0 alors 1.
+```bash
                             Xor
 C=1000011 | Q=1010001  | 0010010 = 18 
 o=1101111 | }=01111101 | 0010010 = 18
 n=1101110 | |=01111100 | 0010010 = 18
 g=1100111 | u=01110101  | ...
 [...]
+```
 
 On obtient donc la valeur 18 en décimal.
 nous deduisons donc que la valeur a soustraire a 322424845 est 18 donc 322424845 - 18 = 322424827.
