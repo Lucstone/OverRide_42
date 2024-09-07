@@ -6,26 +6,18 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:47:42 by lnaidu            #+#    #+#             */
-/*   Updated: 2024/09/07 11:48:49 by lnaidu           ###   ########.fr       */
+/*   Updated: 2024/09/07 15:05:36 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
 void handle_msg(void)
 {
-  undefined local_c8 [140];
-  undefined8 local_3c;
-  undefined8 local_34;
-  undefined8 local_2c;
-  undefined8 local_24;
-  undefined8 local_1c;
-  undefined4 local_14;
-  
-  local_3c = 0;
-  local_34 = 0;
-  local_2c = 0;
-  local_24 = 0;
-  local_1c = 0;
-  local_14 = 0x8c;
+  char local_c8 [140];
+
   set_username(local_c8);
   set_msg(local_c8);
   puts(">: Msg sent!");
