@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:47:42 by lnaidu            #+#    #+#             */
-/*   Updated: 2024/09/07 15:05:36 by lnaidu           ###   ########.fr       */
+/*   Updated: 2024/09/07 17:44:30 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,19 @@
 #include <string.h>
 #include <stdlib.h>
 
+struct s_user
+{
+  char msg[140];
+  char username[40];
+  int len;
+};
+
 void handle_msg(void)
 {
-  char local_c8 [140];
+  char str [140];
 
-  set_username(local_c8);
-  set_msg(local_c8);
+  set_username(str);
+  set_msg(str);
   puts(">: Msg sent!");
   return;
 }
@@ -27,51 +34,39 @@ void handle_msg(void)
 
 void secret_backdoor(void)
 {
-  char local_88 [128];
+  char buffer [128];
   
-  fgets(local_88,0x80,_stdin);
-  system(local_88);
+  fgets(buffer,0x80,stdin); // 128
+  system(buffer);
   return;
 }
 
-void set_msg(char *param_1)
+void set_msg(struct s_user *param_1)
 {
-  long lVar1;
-  undefined8 *puVar2;
-  undefined8 local_408 [128];
+  char local_408 [1024];
   
-  puVar2 = local_408;
-  for (lVar1 = 0x80; lVar1 != 0; lVar1 = lVar1 + -1) {
-    *puVar2 = 0;
-    puVar2 = puVar2 + 1;
-  }
+  memset(local_408,0,0x400); // 1024
   puts(">: Msg @Unix-Dude");
   printf(">>: ");
-  fgets((char *)local_408,0x400,_stdin);
-  strncpy(param_1,(char *)local_408,(long)*(int *)(param_1 + 0xb4));
+  fgets(local_408,0x400,stdin); // 1024
+  strncpy(param_1->msg,local_408,param_1->len + 0xb4);
   return;
 }
 
-void set_username(long param_1)
+void set_username(struct s_user *param_1)
 {
-  long lVar1;
-  undefined8 *puVar2;
-  undefined8 local_98 [17];
-  int local_c;
+  char local_98 [128];
+  int i = 0;
   
-  puVar2 = local_98;
-  for (lVar1 = 0x10; lVar1 != 0; lVar1 = lVar1 + -1) {
-    *puVar2 = 0;
-    puVar2 = puVar2 + 1;
-  }
+  bzero(local_98,0x80); // 128
   puts(">: Enter your username");
   printf(">>: ");
-  fgets((char *)local_98,0x80,_stdin);
-  for (local_c = 0; (local_c < 0x29 && (*(char *)((long)local_98 + (long)local_c) != '\0'));
-      local_c = local_c + 1) {
-    *(undefined *)(param_1 + 0x8c + (long)local_c) = *(undefined *)((long)local_98 + (long)local_c);
+  fgets(local_98,0x80,stdin);
+  for (i = 0; (i < 0x29 && local_98[i] != '\0'); i++); //0x29 = 41
+  {
+    param_1->username[i] = local_98[i];
   }
-  printf(">: Welcome, %s",param_1 + 0x8c);
+  printf(">: Welcome, %s",param_1->username + 0x8c); // 140
   return;
 }
 
