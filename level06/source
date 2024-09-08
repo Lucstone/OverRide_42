@@ -6,20 +6,25 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 10:29:44 by lnaidu            #+#    #+#             */
-/*   Updated: 2024/09/07 10:30:38 by lnaidu           ###   ########.fr       */
+/*   Updated: 2024/09/08 11:27:23 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <stdio.h>
-undefined4 auth(char *param_1,uint param_2)
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/ptrace.h>
+
+
+ int auth(char *param_1,int param_2) // login, serial
 
 {
   size_t sVar1;
-  undefined4 uVar2;
+  int uVar2;
   long lVar3;
   int local_18;
-  uint local_14;
+  int local_14;
   
   sVar1 = strcspn(param_1,"\n");
   param_1[sVar1] = '\0';
@@ -55,33 +60,27 @@ undefined4 auth(char *param_1,uint param_2)
 }
 
 
-bool main(void)
-
+int main(void)
 {
-  int iVar1;
-  int in_GS_OFFSET;
-  char local_34 [32];
-  int local_14;
+
+  char login [32];
+  int serial;
+  int iVar1 = 0;
   
-  local_14 = *(int *)(in_GS_OFFSET + 0x14);
   puts("***********************************");
   puts("*\t\tlevel06\t\t  *");
   puts("***********************************");
   printf("-> Enter Login: ");
-  fgets(local_34,0x20,stdin);
+  fgets(login,0x20,stdin);
   puts("***********************************");
   puts("***** NEW ACCOUNT DETECTED ********");
   puts("***********************************");
   printf("-> Enter Serial: ");
-  __isoc99_scanf();
-  iVar1 = auth();
+  scanf("%u", &serial);
+  iVar1 = auth(login,serial);
   if (iVar1 == 0) {
     puts("Authenticated!");
     system("/bin/sh");
-  }
-  if (local_14 != *(int *)(in_GS_OFFSET + 0x14)) {
-                    /* WARNING: Subroutine does not return */
-    __stack_chk_fail();
   }
   return iVar1 != 0;
 }
