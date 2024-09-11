@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   source.c                                           :+:      :+:    :+:   */
+/*   source                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:55:07 by lnaidu            #+#    #+#             */
-/*   Updated: 2024/09/03 19:11:08 by lnaidu           ###   ########.fr       */
+/*   Updated: 2024/09/11 13:00:34 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,62 +15,29 @@
 #include <string.h>
 #include <time.h>
 
-int decrypt(EVP_PKEY_CTX *ctx,uchar *out,size_t *outlen,uchar *in,size_t inlen)
+int decrypt(unsigned int ctx
 {
-  char cVar1;
-  uint uVar2;
-  int iVar3;
-  undefined4 *puVar4;
-  byte *pbVar5;
-  int in_GS_OFFSET;
-  bool bVar6;
-  bool bVar7;
-  uint local_2c;
-  undefined4 local_21;
-  undefined4 local_1d;
-  undefined4 local_19;
-  undefined4 local_15;
-  undefined local_11;
-  int local_10;
+ 
   
-  local_10 = *(int *)(in_GS_OFFSET + 0x14);
+  int local_10;
+  int len;
+  
+  
+  /*local_10 = *(int *)(in_GS_OFFSET + 0x14);
   local_21 = 0x757c7d51; // u|}Q
   local_1d = 0x67667360; // gfs`
   local_19 = 0x7b66737e; // {fs~
   local_15 = 0x33617c7d; // 3a|}
-  local_11 = 0;
-  uVar2 = 0xffffffff;
-  puVar4 = &local_21;
-  do {
-    if (uVar2 == 0) break;
-    uVar2 = uVar2 - 1;
-    cVar1 = *(char *)puVar4;
-    puVar4 = (undefined4 *)((int)puVar4 + 1);
-  } while (cVar1 != '\0');
-  local_2c = 0;
-  while( true ) {
-    bVar6 = local_2c < ~uVar2 - 1;
-    bVar7 = local_2c == ~uVar2 - 1;
-    if (!bVar6) break;
-    *(byte *)((int)&local_21 + local_2c) = (byte)ctx ^ *(byte *)((int)&local_21 + local_2c);
-    local_2c = local_2c + 1;
-  }
-  iVar3 = 0x11;
-  puVar4 = &local_21;
-  pbVar5 = (byte *)"Congratulations!";
-  do {
-    if (iVar3 == 0) break;
-    iVar3 = iVar3 + -1;
-    bVar6 = *(byte *)puVar4 < *pbVar5;
-    bVar7 = *(byte *)puVar4 == *pbVar5;
-    puVar4 = (undefined4 *)((int)puVar4 + 1);
-    pbVar5 = pbVar5 + 1;
-  } while (bVar7);
-  if ((!bVar6 && !bVar7) == bVar6) {
-    iVar3 = system("/bin/sh");
-  }
+  local_11 = 0;*/
+  char *str = "Q}|u`sfg~sf{}|a3";
+  len = strlen(str);
+  for (local_10=0; local_10<len; local_10++)
+        str[local_10] ^= ctx;
+ 
+  if (!strcmp(str, "Congratulations!"))
+        system("/bin/sh");
   else {
-    iVar3 = puts("\nInvalid Password");
+    printf("\nInvalid Password!\n");
   }
 }
 
